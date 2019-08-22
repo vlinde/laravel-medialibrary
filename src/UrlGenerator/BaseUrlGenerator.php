@@ -73,7 +73,6 @@ abstract class BaseUrlGenerator implements UrlGenerator
         }
 
         return $this->pathGenerator->getPathForConversions($this->media)
-            .pathinfo($this->media->file_name, PATHINFO_FILENAME)
             .'-'.$this->conversion->getName()
             .'.'
             .$this->conversion->getResultExtension($this->media->extension);
