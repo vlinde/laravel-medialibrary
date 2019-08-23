@@ -1,5 +1,5 @@
 {
-  "name": "vlinde/laravel-medialibrary",
+  "name": "spatie/laravel-medialibrary",
   "description": "Associate files with Eloquent models",
   "keywords": [
     "spatie",
