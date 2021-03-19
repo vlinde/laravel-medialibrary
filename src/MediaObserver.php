@@ -28,7 +28,13 @@ class MediaObserver
             return;
         }
 
-        if ($media->manipulations !== json_decode($media->getOriginal('manipulations'), true)) {
+        $originalManipulations = $media->getOriginal('manipulations');
+
+        if (!is_array($originalManipulations)) {
+            $originalManipulations = json_decode($originalManipulations, true);
+        }
+
+        if ($media->manipulations !== $originalManipulations) {
             $eventDispatcher = Media::getEventDispatcher();
             Media::unsetEventDispatcher();
 
@@ -41,7 +47,7 @@ class MediaObserver
     public function deleted(Media $media)
     {
         if (in_array(SoftDeletes::class, class_uses_recursive($media))) {
-            if (! $media->isForceDeleting()) {
+            if (!$media->isForceDeleting()) {
                 return;
             }
         }
